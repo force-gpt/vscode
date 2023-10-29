@@ -1,0 +1,287 @@
+import { execSync } from 'child_process';
+import fetch, { FetchError, Response } from 'node-fetch';
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
+import path = require('path');
+
+import { ExtensionContext, Uri, commands, env, window, workspace } from 'vscode';
+
+
+const SERVER_URI = process.env.SERVER_URI ?? 'https://app.force-gpt.com';
+const AUTH_OPTION_RESET = `Reset credentials`;
+const AUTH_OPTION_WEB = `Go to ForceGPT`;
+const FETCH_TRIES = 3;
+const PROJECT_PATH = (workspace.workspaceFolders ?? [])[0].uri.fsPath;
+
+
+/**
+ * Send an API request to the ForceGPT API.
+ * @param {vscode.ExtensionContext} context - Extension context.
+ * @param {string} method - HTTP method.
+ * @param {string} apiResource - API resource.
+ * @param {Record<string, string> | undefined} headers - API request headers.
+ * @param {Object | undefined} body - API request body.
+ * @returns {Promise<Object | undefined>} The API HTTP response and body.
+ */
+const sendApiRequest = async (context: ExtensionContext, method: string, apiResource: string, headers?: Record<string, string> | undefined, body?: Object | undefined): Promise<any | undefined> => {
+	
+	const credentials = await getCredentials(context);
+	let invalidCredentials = !credentials;
+	let response : any;
+
+	if(credentials) {
+
+		const authToken = Buffer.from(`${credentials.username}:${credentials.apiKey}`).toString('base64');
+
+		const resource = apiResource.startsWith('/') ? apiResource.substring(1) : apiResource;
+
+		response = await handledFetch(
+			`${SERVER_URI}/api/${resource}`,
+			{
+				method: method,
+				headers: { 'Authorization': `Basic ${authToken}`, ...headers },
+				body: JSON.stringify(body)
+			}
+		);
+
+		console.log(response);
+		
+		if(response?.responseBody?.code === 'unauthorized') {
+			invalidCredentials = true;
+		}
+
+	}
+
+	if(invalidCredentials) {
+		window.showErrorMessage(`Set a valid combination of ForceGPT credentials. You can signup or get an API key at force-gpt.com`, AUTH_OPTION_WEB, AUTH_OPTION_RESET)
+			.then(selection => {
+				if(selection === AUTH_OPTION_WEB) {
+
+					env.openExternal(Uri.parse('https://app.force-gpt.com'));
+
+				} else if(selection === AUTH_OPTION_RESET) {
+
+					commands.executeCommand('force-gpt.setCredentials');
+
+				}
+			});
+	}
+
+	return response;
+	
+};
+
+/**
+ * Get ForceGPT credentials from the extension context. If they are not set, ask the user to set them.
+ * @param {vscode.ExtensionContext} context - Extension context.
+ * @returns {Promise<Object | undefined>} The ForceGPT credentials.
+ */
+const getCredentials = async (context: ExtensionContext): Promise<any> => {
+
+	let result;
+
+	let username = await context.secrets.get('force-gpt.username');
+	let apiKey = await context.secrets.get('force-gpt.api-key');
+
+	if(username && apiKey) {
+
+		result = {
+			username: username,
+			apiKey: apiKey
+		};
+
+	} else {
+		result = await setCredentials(context);
+	}
+
+	return result;
+
+};
+
+/**
+ * Set ForceGPT credentials in the extension context.
+ * @param {vscode.ExtensionContext} context - Extension context.
+ * @returns {Promise<Object | undefined>} The ForceGPT credentials.
+ */
+const setCredentials = async (context: ExtensionContext): Promise<any> => {
+
+	let result;
+
+	const username = await window.showInputBox({
+		title: 'ForceGPT Username',
+		placeHolder: 'Enter your username...',
+		prompt: 'If you still don\'t have a user, signup at https://app.force-gpt.com.',
+		ignoreFocusOut: true
+	});
+
+	if(username) {
+
+		const apiKey = await window.showInputBox({
+			title: 'ForceGPT API Key',
+			placeHolder: 'Enter your API key...',
+			prompt: 'API keys are created in the Integration tab at the ForceGPT web Dashboard.',
+			ignoreFocusOut: true
+		});
+
+		if(apiKey) {
+			await context.secrets.store('force-gpt.username', username);
+			await context.secrets.store('force-gpt.api-key', apiKey);
+
+			result = {
+				username: username,
+				apiKey: apiKey
+			};
+		}
+
+	}
+
+	return result;
+
+};
+
+/**
+ * Create an Apex class using the Salesforce CLI.
+ * @param {string} apexClassName - Apex class name.
+ * @param {string} apexClassCode - Apex class code.
+ * @param {string?} classFolderPath - Apex class folder path.
+ */
+const createApexClass = async (apexClassName: string, apexClassCode: string, classFolderPath?: string) => {
+
+	// Get the Salesforce CLI version command
+	const sfCliVersion = getSfCliVersion();
+
+	// If the class folder is not set or does not exist, create it
+	if(!classFolderPath) {
+
+		const sfDefaultPath = getSfDefaultPath();
+
+		classFolderPath = path.join(sfDefaultPath, 'main', 'default', 'classes');
+
+		// Create Apex class folder if it does not exist
+		if(!existsSync(classFolderPath)) {
+			mkdirSync(classFolderPath, { recursive: true });
+		}
+
+	}
+
+	// If the file already exists, ask the user if they want to overwrite it
+	const classFilePath = path.join(classFolderPath, apexClassName + '.cls');
+
+	if(existsSync(classFilePath)) {
+
+		const overwrite = await window.showWarningMessage('The Apex class already exists. Do you want to overwrite it?', 'Yes', 'No');
+
+		if(overwrite !== 'Yes') {
+			throw new Error('USER_ABORT');
+		}
+
+	}
+
+	// Create the Apex class
+	if(sfCliVersion === 'sf') {
+		execSync(`sf apex generate class -d ${classFolderPath} -n ${apexClassName}`);
+	} else if(sfCliVersion === 'sfdx') {
+		execSync(`sf force:apex:class:create -d ${classFolderPath} -n ${apexClassName}`);
+	} else {
+		throw new Error('The Salesforce CLI version could not be identified.');
+	}
+
+	// Fill the Apex class with the generated code
+	writeFileSync(classFilePath, apexClassCode);
+
+	return classFilePath;
+
+};
+
+
+
+
+// ---------- AUX FUNCTIONS ----------
+
+/**
+ * Fetch with response and body handling.
+ * @param {string} endpoint - API endpoint.
+ * @param {Object} params - Fetch parameters.
+ * @returns {Promise<Object>} The fetch response and body.
+ */
+const handledFetch = async (endpoint: string, params: Object): Promise<{ responseBody: any; response: Response; } | undefined> => {
+
+	let result;
+
+	// Try a number of times if a Fetch error occurs
+	for(let i=0; i<FETCH_TRIES; i++) {
+		try {
+			result = await fetch(endpoint, params)
+				.then(response => response.clone().json().catch(() => response.text())
+				.then(responseBody => ({ responseBody: responseBody, response: response })));
+		} catch(error) {
+			console.warn(error);
+			if(error instanceof FetchError && i < FETCH_TRIES-1) {
+				console.warn(`Fetch error, trying again...`);
+			} else {
+				throw error;
+			}
+		}
+	}
+
+	return result;
+		
+};
+
+/**
+ * Get the Salesforce CLI version.
+ */
+const getSfCliVersion = (): string => {
+	
+	let result;
+
+	try {
+		execSync('sf -v');
+		result = 'sf';
+	} catch(error: any) {
+		try {
+			execSync('sfdx -v');
+			result = 'sfdx';
+		} catch(error: any) {
+			throw new Error('The Salesforce CLI is not installed or is not in the PATH.');
+		}
+	}
+
+	return result;
+
+};
+
+
+/**
+ * Get the sf project root path.
+ * @returns {string} The sf project root path.
+ */
+const getSfDefaultPath = (): string => {
+	
+	let result;
+	
+	if(existsSync('sfdx-project.json')) {
+		try {
+			result = JSON.parse(readFileSync('sfdx-project.json', 'utf8')).packageDirectories?.find((dir: any) => dir.default === true)?.path;
+		} catch(error: any) {
+			throw new Error('Error parsing sfdx-project.json.');
+		}
+	}
+	
+	if(!result) {
+		throw new Error('The Salesforce default path could not be retrieved. Please check that you are in a Salesforce project root folder and that there is a sfdx-project.json file with a default package directory.');
+	}
+
+	// Convert the relative path to an absolute path
+	const absoluteFilePath = path.join(PROJECT_PATH, result);
+
+	return absoluteFilePath;
+
+};
+
+
+export default {
+	sendApiRequest,
+	getCredentials,
+	setCredentials,
+	createApexClass
+};

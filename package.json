@@ -1,0 +1,106 @@
+{
+	"name": "force-gpt",
+	"displayName": "ForceGPT",
+	"description": "A specialized code assistant tailored for the Salesforce platform and technologies, simplifying development tasks and enhancing efficiency.",
+	"version": "0.0.1",
+	"publisher": "force-gpt",
+	"icon": "./assets/LogoCircle.png",
+	"repository": "https://github.com/force-gpt/vscode",
+	"type": "commonjs",
+	"engines": {
+		"vscode": "^1.81.0"
+	},
+	"categories": [
+		"Programming Languages",
+		"Snippets",
+		"Machine Learning"
+	],
+	"activationEvents": [],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "force-gpt.setCredentials",
+				"title": "Set Credentials",
+				"category": "ForceGPT"
+			},
+			{
+				"command": "force-gpt.generateApexClass",
+				"title": "Generate Apex Class",
+				"category": "ForceGPT"
+			},
+			{
+				"command": "force-gpt.modifyApexClass",
+				"title": "Modify Apex Class",
+				"category": "ForceGPT"
+			},
+			{
+				"command": "force-gpt.generateApexTest",
+				"title": "Generate Apex Test",
+				"category": "ForceGPT"
+			}
+		],
+		"menus": {
+			"commandPalette": [
+				{
+					"when": "resourceLangId == apex",
+					"command": "force-gpt.generateApexTest"
+				}
+			],
+			"editor/context": [
+				{
+					"submenu": "force-gpt.submenu",
+					"group": "force-gpt"
+				}
+			],
+			"explorer/context": [
+				{
+					"submenu": "force-gpt.submenu",
+					"group": "force-gpt"
+				}
+			],
+			"force-gpt.submenu": [
+				{
+					"when": "resourceLangId == apex",
+					"command": "force-gpt.modifyApexClass",
+					"group": "force-gpt@1"
+				},
+				{
+					"when": "resourceLangId == apex",
+					"command": "force-gpt.generateApexTest",
+					"group": "force-gpt@2"
+				}
+			]
+		},
+		"submenus": [
+			{
+				"id": "force-gpt.submenu",
+				"label": "ForceGPT"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/mocha": "^10.0.1",
+		"@types/node": "16.x",
+		"@types/node-fetch": "^2.6.4",
+		"@types/vscode": "^1.81.0",
+		"@typescript-eslint/eslint-plugin": "^6.4.1",
+		"@typescript-eslint/parser": "^6.4.1",
+		"@vscode/test-electron": "^2.3.4",
+		"eslint": "^8.47.0",
+		"glob": "^10.3.3",
+		"mocha": "^10.2.0",
+		"typescript": "^5.1.6"
+	},
+	"dependencies": {
+		"node-fetch": "^2.7.0"
+	}
+}
