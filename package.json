@@ -2,7 +2,7 @@
 	"name": "force-gpt",
 	"displayName": "ForceGPT",
 	"description": "A specialized code assistant tailored for the Salesforce platform and technologies, simplifying development tasks and enhancing efficiency.",
-	"version": "0.0.1",
+	"version": "0.0.3",
 	"publisher": "force-gpt",
 	"icon": "./assets/LogoCircle.png",
 	"repository": "https://github.com/force-gpt/vscode",

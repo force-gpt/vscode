@@ -24,8 +24,14 @@ Stay tuned for updates and happy coding!
 These are the currently supported features. More coming soon!
 
 - Generate a new Apex class from a description.
+
+![Demo](/assets/demo/generate-apex-and-test.gif)
 - Modify an existing Apex class from a description.
+
+![Demo](/assets/demo/modify-apex.gif)
 - Generate an Apex test class for a just generated or existing Apex class.
+
+![Demo](/assets/demo/generate-apex-test.gif)
 
 ## Requirements
 
