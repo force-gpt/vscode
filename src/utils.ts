@@ -20,7 +20,7 @@ const PROJECT_PATH = (workspace.workspaceFolders ?? [])[0].uri.fsPath;
  * @param {string} apiResource - API resource.
  * @param {Record<string, string> | undefined} headers - API request headers.
  * @param {Object | undefined} body - API request body.
- * @returns {Promise<Object | undefined>} The API HTTP response and body.
+ * @returns {Promise<any | undefined>} The API HTTP response and body.
  */
 const sendApiRequest = async (context: ExtensionContext, method: string, apiResource: string, headers?: Record<string, string> | undefined, body?: Object | undefined): Promise<any | undefined> => {
 	
@@ -52,7 +52,7 @@ const sendApiRequest = async (context: ExtensionContext, method: string, apiReso
 	}
 
 	if(invalidCredentials) {
-		window.showErrorMessage(`Set a valid combination of ForceGPT credentials. You can signup or get an API key at force-gpt.com`, AUTH_OPTION_WEB, AUTH_OPTION_RESET)
+		window.showErrorMessage(`Set a valid combination of ForceGPT credentials. You can signup or get an API key at app.force-gpt.com`, AUTH_OPTION_WEB, AUTH_OPTION_RESET)
 			.then(selection => {
 				if(selection === AUTH_OPTION_WEB) {
 
@@ -73,7 +73,7 @@ const sendApiRequest = async (context: ExtensionContext, method: string, apiReso
 /**
  * Get ForceGPT credentials from the extension context. If they are not set, ask the user to set them.
  * @param {vscode.ExtensionContext} context - Extension context.
- * @returns {Promise<Object | undefined>} The ForceGPT credentials.
+ * @returns {Promise<any>} The ForceGPT credentials.
  */
 const getCredentials = async (context: ExtensionContext): Promise<any> => {
 
@@ -102,7 +102,7 @@ const getCredentials = async (context: ExtensionContext): Promise<any> => {
  * @param {vscode.ExtensionContext} context - Extension context.
  * @returns {Promise<Object | undefined>} The ForceGPT credentials.
  */
-const setCredentials = async (context: ExtensionContext): Promise<any> => {
+const setCredentials = async (context: ExtensionContext): Promise<Object | undefined> => {
 
 	let result;
 
@@ -139,12 +139,28 @@ const setCredentials = async (context: ExtensionContext): Promise<any> => {
 };
 
 /**
+ * Erase stored ForceGPT credentials from the extension context.
+ * @param {vscode.ExtensionContext} context - Extension context.
+ */
+const eraseCredentials = (context: ExtensionContext): void => {
+
+	window.showWarningMessage('Are you sure you want to erase your stored ForceGPT credentials?', 'Yes', 'No').then((choice) => {
+        if(choice === 'Yes') {
+			context.secrets.delete('force-gpt.username');
+			context.secrets.delete('force-gpt.api-key');
+		}
+    });
+
+};
+
+/**
  * Create an Apex class using the Salesforce CLI.
  * @param {string} apexClassName - Apex class name.
  * @param {string} apexClassCode - Apex class code.
  * @param {string?} classFolderPath - Apex class folder path.
+ * @returns {Promise<string>} The new Apex class file path.
  */
-const createApexClass = async (apexClassName: string, apexClassCode: string, classFolderPath?: string) => {
+const createApexClass = async (apexClassName: string, apexClassCode: string, classFolderPath?: string): Promise<string> => {
 
 	// Get the Salesforce CLI version command
 	const sfCliVersion = getSfCliVersion();
@@ -180,7 +196,7 @@ const createApexClass = async (apexClassName: string, apexClassCode: string, cla
 	if(sfCliVersion === 'sf') {
 		execSync(`sf apex generate class -d ${classFolderPath} -n ${apexClassName}`);
 	} else if(sfCliVersion === 'sfdx') {
-		execSync(`sf force:apex:class:create -d ${classFolderPath} -n ${apexClassName}`);
+		execSync(`sfdx force:apex:class:create -d ${classFolderPath} -n ${apexClassName}`);
 	} else {
 		throw new Error('The Salesforce CLI version could not be identified.');
 	}
@@ -192,7 +208,57 @@ const createApexClass = async (apexClassName: string, apexClassCode: string, cla
 
 };
 
+/**
+ * Create a Lightning Web Component using the Salesforce CLI.
+ * @param {string} newLwcName - Component name.
+ * @param {any} newLwcCode - Component code.
+ * @returns {Promise<string>} The new component HTML file path.
+ */
+const createLwc = async (newLwcName: string, newLwcCode: any): Promise<string> => {
 
+	// Get the Salesforce CLI version command
+	const sfCliVersion = getSfCliVersion();
+	const sfDefaultPath = getSfDefaultPath();
+
+	const lwcFolderPath = path.join(sfDefaultPath, 'main', 'default', 'lwc');
+
+	// Create LWC folder if it does not exist
+	if(!existsSync(lwcFolderPath)) {
+		mkdirSync(lwcFolderPath, { recursive: true });
+	}
+
+	// If the new LWC folder already exists, ask the user if they want to overwrite it
+	const newLwcFolderPath = path.join(lwcFolderPath, newLwcName);
+
+	if(existsSync(newLwcFolderPath)) {
+
+		const overwrite = await window.showWarningMessage('The Lightning Web Component already exists. Do you want to overwrite it?', 'Yes', 'No');
+
+		if(overwrite !== 'Yes') {
+			throw new Error('USER_ABORT');
+		}
+
+	}
+
+	// Create the component
+	if(sfCliVersion === 'sf') {
+		execSync(`sf lightning generate component --type lwc -d ${lwcFolderPath} -n ${newLwcName}`);
+	} else if(sfCliVersion === 'sfdx') {
+		execSync(`sfdx force:lightning:component:create --type lwc -d ${lwcFolderPath} -n ${newLwcName}`);
+	} else {
+		throw new Error('The Salesforce CLI version could not be identified.');
+	}
+
+	// Fill the Lightning Web Component with the generated code
+	const lwcFileBasePath = path.join(newLwcFolderPath, newLwcName);
+	if(newLwcCode.html) writeFileSync(lwcFileBasePath + '.html', newLwcCode.html);
+	if(newLwcCode.css) writeFileSync(lwcFileBasePath + '.css', newLwcCode.css);
+	if(newLwcCode.js) writeFileSync(lwcFileBasePath + '.js', newLwcCode.js);
+	if(newLwcCode.meta) writeFileSync(lwcFileBasePath + '.js-meta.xml', newLwcCode.meta);
+
+	return lwcFileBasePath + '.html';
+
+};
 
 
 // ---------- AUX FUNCTIONS ----------
@@ -201,7 +267,7 @@ const createApexClass = async (apexClassName: string, apexClassCode: string, cla
  * Fetch with response and body handling.
  * @param {string} endpoint - API endpoint.
  * @param {Object} params - Fetch parameters.
- * @returns {Promise<Object>} The fetch response and body.
+ * @returns {Promise<{ responseBody: any; response: Response; } | undefined>} The fetch response and body.
  */
 const handledFetch = async (endpoint: string, params: Object): Promise<{ responseBody: any; response: Response; } | undefined> => {
 
@@ -229,6 +295,7 @@ const handledFetch = async (endpoint: string, params: Object): Promise<{ respons
 
 /**
  * Get the Salesforce CLI version.
+ * @returns {string} The Salesforce CLI version.
  */
 const getSfCliVersion = (): string => {
 	
@@ -283,5 +350,7 @@ export default {
 	sendApiRequest,
 	getCredentials,
 	setCredentials,
-	createApexClass
+	eraseCredentials,
+	createApexClass,
+	createLwc
 };

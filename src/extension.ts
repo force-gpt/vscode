@@ -2,9 +2,11 @@
 import * as vscode from 'vscode';
 
 import setCredentials from './commands/set-credentials';
+import eraseCredentials from './commands/erase-credentials';
 import generateApexClass from './commands/generate-apex-class';
 import modifyApexClass from './commands/modify-apex-class';
 import generateApexTest from './commands/generate-apex-test';
+import generateLwc from './commands/generate-lwc';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -13,6 +15,11 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(vscode.commands.registerCommand('force-gpt.setCredentials', async () => {
 		console.log('ForceGPT Command: setCredentials');
 		await setCredentials.execute(context);
+	}));
+	
+	context.subscriptions.push(vscode.commands.registerCommand('force-gpt.eraseCredentials', async () => {
+		console.log('ForceGPT Command: eraseCredentials');
+		await eraseCredentials.execute(context);
 	}));
 	
 	context.subscriptions.push(vscode.commands.registerCommand('force-gpt.generateApexClass', async () => {
@@ -28,6 +35,11 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(vscode.commands.registerCommand('force-gpt.generateApexTest', async (uri: vscode.Uri) => {
 		console.log('ForceGPT Command: generateApexTest');
 		await generateApexTest.execute(context, uri);
+	}));
+	
+	context.subscriptions.push(vscode.commands.registerCommand('force-gpt.generateLwc', async () => {
+		console.log('ForceGPT Command: generateLwc');
+		await generateLwc.execute(context);
 	}));
 
 }

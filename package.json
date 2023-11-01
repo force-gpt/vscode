@@ -2,7 +2,7 @@
 	"name": "force-gpt",
 	"displayName": "ForceGPT",
 	"description": "A specialized code assistant tailored for the Salesforce platform and technologies, simplifying development tasks and enhancing efficiency.",
-	"version": "0.0.3",
+	"version": "0.1.0",
 	"publisher": "force-gpt",
 	"icon": "./assets/LogoCircle.png",
 	"repository": "https://github.com/force-gpt/vscode",
@@ -25,6 +25,11 @@
 				"category": "ForceGPT"
 			},
 			{
+				"command": "force-gpt.eraseCredentials",
+				"title": "Erase Credentials",
+				"category": "ForceGPT"
+			},
+			{
 				"command": "force-gpt.generateApexClass",
 				"title": "Generate Apex Class",
 				"category": "ForceGPT"
@@ -37,6 +42,11 @@
 			{
 				"command": "force-gpt.generateApexTest",
 				"title": "Generate Apex Test",
+				"category": "ForceGPT"
+			},
+			{
+				"command": "force-gpt.generateLwc",
+				"title": "Generate Lightning Web Component",
 				"category": "ForceGPT"
 			}
 		],

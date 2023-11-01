@@ -26,12 +26,18 @@ These are the currently supported features. More coming soon!
 - Generate a new Apex class from a description.
 
 ![Demo](/assets/demo/generate-apex-and-test.gif)
+
 - Modify an existing Apex class from a description.
 
 ![Demo](/assets/demo/modify-apex.gif)
+
 - Generate an Apex test class for a just generated or existing Apex class.
 
 ![Demo](/assets/demo/generate-apex-test.gif)
+
+- Generate a new Lightning Web Component from a description.
+
+![Demo](/assets/demo/generate-lwc.gif)
 
 ## Requirements
 
@@ -44,6 +50,7 @@ None.
 
 ## Release Notes
 
-### 0.0.1-beta
+### 0.1.0-beta
 
-First beta release supporting Apex code generation, modification, and tests.
+- New command to generate a Lightning Web Component
+- New command to erase stored credentials on demand
