@@ -2,10 +2,10 @@
 	"name": "force-gpt",
 	"displayName": "ForceGPT",
 	"description": "A specialized code assistant tailored for the Salesforce platform and technologies, simplifying development tasks and enhancing efficiency.",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"publisher": "force-gpt",
 	"icon": "./assets/LogoCircle.png",
-	"repository": "https://github.com/force-gpt/vscode",
+	"repository": { "type": "git", "url":"https://github.com/force-gpt/vscode" },
 	"type": "commonjs",
 	"engines": {
 		"vscode": "^1.81.0"
@@ -48,6 +48,11 @@
 				"command": "force-gpt.generateLwc",
 				"title": "Generate Lightning Web Component",
 				"category": "ForceGPT"
+			},
+			{
+				"command": "force-gpt.modifyLwc",
+				"title": "Modify Lightning Web Component",
+				"category": "ForceGPT"
 			}
 		],
 		"menus": {
@@ -55,6 +60,14 @@
 				{
 					"when": "resourceLangId == apex",
 					"command": "force-gpt.generateApexTest"
+				},
+				{
+					"when": "resourceLangId == apex",
+					"command": "force-gpt.modifyApexClass"
+				},
+				{
+					"when": "(explorerResourceIsFolder && resourceDirname =~ /.*(\\/|\\\\)lwc$/) || resourcePath =~ /.*(\\/|\\\\)lwc(\\/|\\\\)[^\\/\\\\]+(\\/|\\\\)[^\\/\\\\]+$/",
+					"command": "force-gpt.modifyLwc"
 				}
 			],
 			"editor/context": [
@@ -79,6 +92,11 @@
 					"when": "resourceLangId == apex",
 					"command": "force-gpt.generateApexTest",
 					"group": "force-gpt@2"
+				},
+				{
+					"when": "(explorerResourceIsFolder && resourceDirname =~ /.*(\\/|\\\\)lwc$/) || resourcePath =~ /.*(\\/|\\\\)lwc(\\/|\\\\)[^\\/\\\\]+(\\/|\\\\)[^\\/\\\\]+$/",
+					"command": "force-gpt.modifyLwc",
+					"group": "force-gpt@3"
 				}
 			]
 		},

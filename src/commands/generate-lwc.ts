@@ -32,6 +32,7 @@ const execute = async (context: ExtensionContext): Promise<void> => {
 				'POST',
 				'/assistant/generate/lwc',
 				{
+					// eslint-disable-next-line @typescript-eslint/naming-convention
 					'Content-Type': 'application/json'
 				},
 				{

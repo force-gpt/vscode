@@ -1,6 +1,8 @@
 # ForceGPT (Beta) - Your Salesforce Specialized Code Assistant
 
-ForceGPT is a code assistant specialized in Salesforce code generation. It will help you create, improve, and even fix your code, making your Salesforce development journey smoother and more efficient. Like Einstein but better.
+ForceGPT is an assistant and high quality code generator specialized in Salesforce Core platform, taking advantage of the latest GPT models' capabilities. It will help you create, improve, and even fix your code, making your Salesforce development journey smoother and more efficient. We already support working with Apex and Lightning Web Components, ahead of any other solution we know of (even Salesforce's).
+
+If you are tired of waiting for Salesforce official Einstein for Developers, wait no longer. This extension is available now and goes further, striving always to provide a complementary or simply better approach.
 
 **Developed by Salesforce Experts:** Our team of Salesforce technology experts has created ForceGPT to ensure it aligns perfectly with the platform's best practices, complexities, and nuances. It's not just another generic code generation tool – it's your Salesforce coding companion. Thus, it understands Salesforce metadata, elements composed of several files like Lightning Web Components, security keywords, and more.
 
@@ -39,6 +41,10 @@ These are the currently supported features. More coming soon!
 
 ![Demo](/assets/demo/generate-lwc.gif)
 
+- Modify an exising Lightning Web Component from a description, including all of its files in the same request (html, css, js and meta).
+
+![Demo](/assets/demo/modify-lwc.gif)
+
 ## Requirements
 
 This extension must be used in the context of a SFDX project.
@@ -50,7 +56,7 @@ None.
 
 ## Release Notes
 
-### 0.1.0-beta
+### 0.2.0-beta
 
-- New command to generate a Lightning Web Component
-- New command to erase stored credentials on demand
+- New command to modify a Lightning Web Component
+- Fixed repeated request issue delaying the code generation

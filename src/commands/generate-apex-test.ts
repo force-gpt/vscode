@@ -22,13 +22,14 @@ const execute = async (context: ExtensionContext, uri: Uri): Promise<void> => {
 			// Get Apex class file from clicked on file or else from open editor file
 			const apexClassPath = uri?.fsPath ?? window.activeTextEditor?.document.uri.fsPath;
 			const apexClassDirPath = path.dirname(apexClassPath);
-			const apexClassCode = readFileSync(apexClassPath, "utf8");
+			const apexClassCode = readFileSync(apexClassPath, 'utf8');
 			
 			const generationResponse = await utils.sendApiRequest(
 				context,
 				'POST',
 				'/assistant/generate/apex-test',
 				{
+					// eslint-disable-next-line @typescript-eslint/naming-convention
 					'Content-Type': 'application/json'
 				},
 				{

@@ -38,6 +38,7 @@ const sendApiRequest = async (context: ExtensionContext, method: string, apiReso
 			`${SERVER_URI}/api/${resource}`,
 			{
 				method: method,
+				// eslint-disable-next-line @typescript-eslint/naming-convention
 				headers: { 'Authorization': `Basic ${authToken}`, ...headers },
 				body: JSON.stringify(body)
 			}
@@ -251,10 +252,10 @@ const createLwc = async (newLwcName: string, newLwcCode: any): Promise<string> =
 
 	// Fill the Lightning Web Component with the generated code
 	const lwcFileBasePath = path.join(newLwcFolderPath, newLwcName);
-	if(newLwcCode.html) writeFileSync(lwcFileBasePath + '.html', newLwcCode.html);
-	if(newLwcCode.css) writeFileSync(lwcFileBasePath + '.css', newLwcCode.css);
-	if(newLwcCode.js) writeFileSync(lwcFileBasePath + '.js', newLwcCode.js);
-	if(newLwcCode.meta) writeFileSync(lwcFileBasePath + '.js-meta.xml', newLwcCode.meta);
+	if(newLwcCode.html) { writeFileSync(lwcFileBasePath + '.html', newLwcCode.html); }
+	if(newLwcCode.css) { writeFileSync(lwcFileBasePath + '.css', newLwcCode.css); }
+	if(newLwcCode.js) { writeFileSync(lwcFileBasePath + '.js', newLwcCode.js); }
+	if(newLwcCode.meta) { writeFileSync(lwcFileBasePath + '.js-meta.xml', newLwcCode.meta); }
 
 	return lwcFileBasePath + '.html';
 
@@ -274,7 +275,7 @@ const handledFetch = async (endpoint: string, params: Object): Promise<{ respons
 	let result;
 
 	// Try a number of times if a Fetch error occurs
-	for(let i=0; i<FETCH_TRIES; i++) {
+	for(let i=0; i<FETCH_TRIES && !result; i++) {
 		try {
 			result = await fetch(endpoint, params)
 				.then(response => response.clone().json().catch(() => response.text())

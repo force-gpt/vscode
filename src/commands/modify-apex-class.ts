@@ -33,13 +33,14 @@ const execute = async (context: ExtensionContext, uri: Uri): Promise<void> => {
 
 			// Get code from the clicked on file or else from open editor file
 			const apexClassPath = uri?.fsPath ?? window.activeTextEditor?.document.uri.fsPath;
-			const apexClassCode = readFileSync(apexClassPath, "utf8");
+			const apexClassCode = readFileSync(apexClassPath, 'utf8');
 
 			const modificationResponse = await utils.sendApiRequest(
 				context,
 				'POST',
 				'/assistant/modify/apex-class',
 				{
+					// eslint-disable-next-line @typescript-eslint/naming-convention
 					'Content-Type': 'application/json'
 				},
 				{

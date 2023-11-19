@@ -7,6 +7,7 @@ import generateApexClass from './commands/generate-apex-class';
 import modifyApexClass from './commands/modify-apex-class';
 import generateApexTest from './commands/generate-apex-test';
 import generateLwc from './commands/generate-lwc';
+import modifyLwc from './commands/modify-lwc';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -40,6 +41,11 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(vscode.commands.registerCommand('force-gpt.generateLwc', async () => {
 		console.log('ForceGPT Command: generateLwc');
 		await generateLwc.execute(context);
+	}));
+	
+	context.subscriptions.push(vscode.commands.registerCommand('force-gpt.modifyLwc', async (uri: vscode.Uri) => {
+		console.log('ForceGPT Command: modifyLwc');
+		await modifyLwc.execute(context, uri);
 	}));
 
 }
