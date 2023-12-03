@@ -1,3 +1,5 @@
+<h3>And that's all you need for this setup! 🎉</h3>
+
 Want to try the extension? You can create a new Apex class (test included!) by just giving ForceGPT a human description.
 
 You may try with some of these, or any other you want!

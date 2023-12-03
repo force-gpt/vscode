@@ -6,4 +6,4 @@
 
 Get ready to change the way you code for *Salesforce* 🤖💻🚀
 
-First off, you need a **ForceGPT account** to get an **API key**. Once you have signed up, just set your credentials with the **Signup** command button.
+First off, you need a **ForceGPT account** to get an **API key**. To sign up, just use the **Signup** command button.
