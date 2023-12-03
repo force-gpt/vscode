@@ -1,5 +1,9 @@
 # Change Log
 
+### 0.3.0-beta
+
+- New walkthrough to ease initial set-up
+
 ### 0.2.0-beta
 
 - New command to modify a Lightning Web Component

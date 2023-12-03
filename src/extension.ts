@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 import * as vscode from 'vscode';
 
+import forceGptSignup from './commands/forcegpt-signup';
 import setCredentials from './commands/set-credentials';
 import eraseCredentials from './commands/erase-credentials';
 import generateApexClass from './commands/generate-apex-class';
@@ -12,6 +13,11 @@ import modifyLwc from './commands/modify-lwc';
 export function activate(context: vscode.ExtensionContext) {
 
     console.log('ForceGPT is now active');
+	
+	context.subscriptions.push(vscode.commands.registerCommand('force-gpt.forceGptSignup', () => {
+		console.log('ForceGPT Command: forceGptSignup');
+		forceGptSignup.execute(context);
+	}));
 	
 	context.subscriptions.push(vscode.commands.registerCommand('force-gpt.setCredentials', async () => {
 		console.log('ForceGPT Command: setCredentials');

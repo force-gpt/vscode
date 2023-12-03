@@ -2,10 +2,10 @@
 	"name": "force-gpt",
 	"displayName": "ForceGPT",
 	"description": "A specialized code assistant tailored for the Salesforce platform and technologies, simplifying development tasks and enhancing efficiency.",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"publisher": "force-gpt",
 	"icon": "./assets/LogoCircle.png",
-	"repository": { "type": "git", "url":"https://github.com/force-gpt/vscode" },
+	"repository": { "type": "git", "url": "https://github.com/force-gpt/vscode" },
 	"type": "commonjs",
 	"engines": {
 		"vscode": "^1.81.0"
@@ -19,6 +19,11 @@
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
+			{
+			  "command": "force-gpt.forceGptSignup",
+			  "title": "Open the ForceGPT Signup page",
+			  "category": "ForceGPT"
+			},
 			{
 				"command": "force-gpt.setCredentials",
 				"title": "Set Credentials",
@@ -84,18 +89,18 @@
 			],
 			"force-gpt.submenu": [
 				{
-					"when": "resourceLangId == apex",
 					"command": "force-gpt.modifyApexClass",
+					"when": "resourceLangId == apex",
 					"group": "force-gpt@1"
 				},
 				{
-					"when": "resourceLangId == apex",
 					"command": "force-gpt.generateApexTest",
+					"when": "resourceLangId == apex",
 					"group": "force-gpt@2"
 				},
 				{
-					"when": "(explorerResourceIsFolder && resourceDirname =~ /.*(\\/|\\\\)lwc$/) || resourcePath =~ /.*(\\/|\\\\)lwc(\\/|\\\\)[^\\/\\\\]+(\\/|\\\\)[^\\/\\\\]+$/",
 					"command": "force-gpt.modifyLwc",
+					"when": "(explorerResourceIsFolder && resourceDirname =~ /.*(\\/|\\\\)lwc$/) || resourcePath =~ /.*(\\/|\\\\)lwc(\\/|\\\\)[^\\/\\\\]+(\\/|\\\\)[^\\/\\\\]+$/",
 					"group": "force-gpt@3"
 				}
 			]
@@ -104,6 +109,36 @@
 			{
 				"id": "force-gpt.submenu",
 				"label": "ForceGPT"
+			}
+		],
+		"walkthroughs": [
+			{
+				"id": "intro",
+				"title": "Getting started",
+				"description": "Get started with ForceGPT and discover a whole new way of interacting with Salesforce.",
+				"steps": [
+					{
+						"id": "signup",
+						"title": "Signup to ForceGPT",
+						"description": "Get your ForceGPT account here.\n[Signup](command:force-gpt.forceGptSignup)",
+						"media": { "markdown": "assets/walkthrough/1-signup.md" },
+						"completionEvents": [ "onCommand:force-gpt.forceGptSignup" ]
+					},
+					{
+						"id": "setcredentials",
+						"title": "Set Credentials",
+						"description": "Set your ForceGPT credentials.\n[Set Credentials](command:force-gpt.setCredentials)",
+						"media": { "markdown": "assets/walkthrough/2-set-credentials.md" },
+						"completionEvents": [ "onCommand:force-gpt.setCredentials" ]
+					},
+					{
+						"id": "runcommand",
+						"title": "Try it!",
+						"description": "Try the extension generating an Apex class.\n[Generate Apex Class](command:force-gpt.generateApexClass)",
+						"media": { "markdown": "assets/walkthrough/3-try-it.md" },
+						"completionEvents": ["onCommand:force-gpt.generateApexClass"]
+					}
+				]
 			}
 		]
 	},

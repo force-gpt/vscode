@@ -56,7 +56,6 @@ None.
 
 ## Release Notes
 
-### 0.2.0-beta
+### 0.3.0-beta
 
-- New command to modify a Lightning Web Component
-- Fixed repeated request issue delaying the code generation
+- New walkthrough to ease initial set-up
