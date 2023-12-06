@@ -1,5 +1,13 @@
 # Change Log
 
+### 0.3.2-beta
+
+- Credentials automatically set from signup page
+
+### 0.3.1-beta
+
+- Fix some literals
+
 ### 0.3.0-beta
 
 - New walkthrough to ease initial set-up

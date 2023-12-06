@@ -56,6 +56,6 @@ None.
 
 ## Release Notes
 
-### 0.3.0-beta
+### 0.3.2-beta
 
-- New walkthrough to ease initial set-up
+- Credentials automatically set from signup page
