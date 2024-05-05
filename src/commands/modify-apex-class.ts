@@ -35,6 +35,9 @@ const execute = async (context: ExtensionContext, uri: Uri): Promise<void> => {
 			const apexClassPath = uri?.fsPath ?? window.activeTextEditor?.document.uri.fsPath;
 			const apexClassCode = readFileSync(apexClassPath, 'utf8');
 
+			// Get context for the request from the project's metadata
+			const metadataContext = utils.getMetadataContext(context);
+
 			const modificationResponse = await utils.sendApiRequest(
 				context,
 				'POST',
@@ -45,6 +48,7 @@ const execute = async (context: ExtensionContext, uri: Uri): Promise<void> => {
 				},
 				{
 					request: modificationRequest,
+					context: { metadata: metadataContext },
 					apexClass: apexClassCode
 				}
 			);

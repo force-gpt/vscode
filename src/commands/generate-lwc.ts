@@ -27,6 +27,9 @@ const execute = async (context: ExtensionContext): Promise<void> => {
 			location: ProgressLocation.Notification
 		}, async () => {
 
+			// Get context for the request from the project's metadata
+			const metadataContext = utils.getMetadataContext(context);
+
 			const generationResponse = await utils.sendApiRequest(
 				context,
 				'POST',
@@ -36,7 +39,8 @@ const execute = async (context: ExtensionContext): Promise<void> => {
 					'Content-Type': 'application/json'
 				},
 				{
-					request: lwcDescription
+					request: lwcDescription,
+					context: { metadata: metadataContext }
 				}
 			);
 			

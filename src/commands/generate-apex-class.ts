@@ -29,15 +29,20 @@ const execute = async (context: ExtensionContext): Promise<void> => {
 			location: ProgressLocation.Notification
 		}, async () => {
 
+			// Get context for the request from the project's metadata
+			const metadataContext = utils.getMetadataContext(context);
+
 			const generationResponse = await utils.sendApiRequest(
 				context,
 				'POST',
 				'/assistant/generate/apex-class',
 				{
+					// eslint-disable-next-line @typescript-eslint/naming-convention
 					'Content-Type': 'application/json'
 				},
 				{
-					request: classDescription
+					request: classDescription,
+					context: { metadata: metadataContext }
 				}
 			);
 			

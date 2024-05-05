@@ -6,6 +6,8 @@ If you are tired of waiting for Salesforce official Einstein for Developers, wai
 
 **Developed by Salesforce Experts:** Our team of Salesforce technology experts has created ForceGPT to ensure it aligns perfectly with the platform's best practices, complexities, and nuances. It's not just another generic code generation tool – it's your Salesforce coding companion. Thus, it understands Salesforce metadata, elements composed of several files like Lightning Web Components, security keywords, and more.
 
+**Grounded on your project metadata:** Your code generation requests are now enriched with your project's specifics. Employing Retrieval-Augmented Generation (RAG) based on your project metadata, ForceGPT delivers custom, context-aware code solutions that integrate seamlessly with your project environment.
+
 ## Beta Notice
 
 Please be aware that ForceGPT is currently in the beta phase. While we are committed to enhancing its capabilities, we cannot guarantee continuous availability or the final quality of the service during this phase. However, there are no costs associated with using it, and we invite you to join us in shaping the future of ForceGPT by signing up at [app.force-gpt.com](https://app.force-gpt.com).
@@ -56,6 +58,6 @@ None.
 
 ## Release Notes
 
-### 0.3.2-beta
+### 0.4.0-beta
 
-- Credentials automatically set from signup page
+- Code generation requests are now grounded on the project metadata. At this point, data model is sent along with the requests.

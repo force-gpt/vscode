@@ -1,7 +1,8 @@
 import { execSync } from 'child_process';
 import fetch, { FetchError, Response } from 'node-fetch';
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import path = require('path');
+import { readFileSync, writeFileSync, existsSync, lstatSync, readdirSync, mkdirSync } from 'fs';
+import { XMLParser } from 'fast-xml-parser';
 
 import { ExtensionContext, Uri, commands, env, window, workspace } from 'vscode';
 
@@ -151,6 +152,90 @@ const eraseCredentials = (context: ExtensionContext): void => {
 			context.secrets.delete('force-gpt.api-key');
 		}
     });
+
+};
+
+/**
+ * Collect the sf project's metadata context to ground a request.
+ * @param {vscode.ExtensionContext} context - Extension context.
+ */
+const getMetadataContext = (context: ExtensionContext): Object => {
+	
+	const sfDefaultPath = getSfDefaultPath();
+	const objectFolderPath = path.join(sfDefaultPath, 'main', 'default', 'objects');
+
+	let objectMetadata: any[] = [];
+
+	if(existsSync(objectFolderPath)) {
+
+		const parser = new XMLParser();
+
+		readdirSync(objectFolderPath).forEach((objectName) => {
+			try {
+
+				const objectPath = path.join(objectFolderPath, objectName);
+
+				if(lstatSync(objectPath).isDirectory()) {
+				
+					const object: any = {
+						name: objectName
+					};
+
+					// Get meta information
+					const objectMeta = readFileSync(path.join(objectPath, objectName + '.object-meta.xml'));
+					const parsedObjectMeta = parser.parse(objectMeta).CustomObject;
+
+					if(parsedObjectMeta.description) {
+						object.description = parsedObjectMeta.description;
+					}
+
+					// Get fields information
+					const fieldsFolderPath = path.join(objectPath, 'fields');
+					readdirSync(fieldsFolderPath).forEach((fieldFile) => {
+
+						if(!object.fields) {
+							object.fields = [];
+						}
+
+						// Get meta information
+						const fieldMeta = readFileSync(path.join(fieldsFolderPath, fieldFile));
+						const parsedFieldMeta = parser.parse(fieldMeta).CustomField;
+						const field: any = {
+							name: parsedFieldMeta.fullName,
+							description: parsedFieldMeta.description,
+							type: parsedFieldMeta.type
+						};
+						if(parsedFieldMeta.length) { field.length = parseInt(parsedFieldMeta.length); }
+						if(parsedFieldMeta.required === 'true') { field.required = true; }
+						if(parsedFieldMeta.externalId === 'true') { field.externalId = true; }
+						if(parsedFieldMeta.referenceTo) { field.referenceTo = parsedFieldMeta.referenceTo; }
+						if(parsedFieldMeta.relationshipName) { field.relationshipName = parsedFieldMeta.relationshipName; }
+						if(parsedFieldMeta.type === 'Picklist') {
+							field.picklistValues = parsedFieldMeta.valueSet.valueSetDefinition.value.map((value: any) => ({ fullName: value.fullName, label: value.label }));
+						}
+
+						object.fields.push(field);
+
+					});
+
+					objectMetadata.push(object);
+				
+				}
+
+			} catch(error) {
+				console.warn(`Object folder not processable: ${objectName}`);
+				console.warn(error);
+			}
+		});
+	}
+
+	let metadataContext: any = {};
+
+	if(objectMetadata.length > 0) {
+		metadataContext.objectMetadata = objectMetadata;
+	}
+
+	return metadataContext;
 
 };
 
@@ -352,6 +437,7 @@ export default {
 	getCredentials,
 	setCredentials,
 	eraseCredentials,
+	getMetadataContext,
 	createApexClass,
 	createLwc
 };

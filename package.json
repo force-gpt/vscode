@@ -2,10 +2,13 @@
 	"name": "force-gpt",
 	"displayName": "ForceGPT",
 	"description": "A specialized code assistant tailored for the Salesforce platform and technologies, simplifying development tasks and enhancing efficiency.",
-	"version": "0.3.2",
+	"version": "0.4.0",
 	"publisher": "force-gpt",
 	"icon": "./assets/LogoCircle.png",
-	"repository": { "type": "git", "url": "https://github.com/force-gpt/vscode" },
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/force-gpt/vscode"
+	},
 	"type": "commonjs",
 	"engines": {
 		"vscode": "^1.81.0"
@@ -20,9 +23,9 @@
 	"contributes": {
 		"commands": [
 			{
-			  "command": "force-gpt.forceGptSignup",
-			  "title": "Open the ForceGPT Signup page",
-			  "category": "ForceGPT"
+				"command": "force-gpt.forceGptSignup",
+				"title": "Open the ForceGPT Signup page",
+				"category": "ForceGPT"
 			},
 			{
 				"command": "force-gpt.setCredentials",
@@ -121,22 +124,34 @@
 						"id": "signup",
 						"title": "Signup to ForceGPT",
 						"description": "Get your ForceGPT account here.\n[Signup](command:force-gpt.forceGptSignup)",
-						"media": { "markdown": "assets/walkthrough/1-signup.md" },
-						"completionEvents": [ "onCommand:force-gpt.forceGptSignup" ]
+						"media": {
+							"markdown": "assets/walkthrough/1-signup.md"
+						},
+						"completionEvents": [
+							"onCommand:force-gpt.forceGptSignup"
+						]
 					},
 					{
 						"id": "setcredentials",
 						"title": "Set Credentials",
 						"description": "Set your ForceGPT credentials.\n[Set Credentials](command:force-gpt.setCredentials)",
-						"media": { "markdown": "assets/walkthrough/2-set-credentials.md" },
-						"completionEvents": [ "onCommand:force-gpt.setCredentials" ]
+						"media": {
+							"markdown": "assets/walkthrough/2-set-credentials.md"
+						},
+						"completionEvents": [
+							"onCommand:force-gpt.setCredentials"
+						]
 					},
 					{
 						"id": "runcommand",
 						"title": "Try it!",
 						"description": "Try the extension generating an Apex class.\n[Generate Apex Class](command:force-gpt.generateApexClass)",
-						"media": { "markdown": "assets/walkthrough/3-try-it.md" },
-						"completionEvents": ["onCommand:force-gpt.generateApexClass"]
+						"media": {
+							"markdown": "assets/walkthrough/3-try-it.md"
+						},
+						"completionEvents": [
+							"onCommand:force-gpt.generateApexClass"
+						]
 					}
 				]
 			}
@@ -164,6 +179,7 @@
 		"typescript": "^5.1.6"
 	},
 	"dependencies": {
+		"fast-xml-parser": "^4.3.6",
 		"node-fetch": "^2.7.0"
 	}
 }

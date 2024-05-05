@@ -1,5 +1,9 @@
 # Change Log
 
+### 0.4.0-beta
+
+- Code generation requests are now grounded on the project metadata. At this point, data model is sent along with the requests
+
 ### 0.3.2-beta
 
 - Credentials automatically set from signup page
