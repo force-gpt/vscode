@@ -191,32 +191,79 @@ const getMetadataContext = (context: ExtensionContext): Object => {
 
 					// Get fields information
 					const fieldsFolderPath = path.join(objectPath, 'fields');
-					readdirSync(fieldsFolderPath).forEach((fieldFile) => {
+					if(existsSync(fieldsFolderPath)) {
+						readdirSync(fieldsFolderPath).forEach((fieldFile) => {
 
-						if(!object.fields) {
-							object.fields = [];
-						}
+							try {
 
-						// Get meta information
-						const fieldMeta = readFileSync(path.join(fieldsFolderPath, fieldFile));
-						const parsedFieldMeta = parser.parse(fieldMeta).CustomField;
-						const field: any = {
-							name: parsedFieldMeta.fullName,
-							description: parsedFieldMeta.description,
-							type: parsedFieldMeta.type
-						};
-						if(parsedFieldMeta.length) { field.length = parseInt(parsedFieldMeta.length); }
-						if(parsedFieldMeta.required === 'true') { field.required = true; }
-						if(parsedFieldMeta.externalId === 'true') { field.externalId = true; }
-						if(parsedFieldMeta.referenceTo) { field.referenceTo = parsedFieldMeta.referenceTo; }
-						if(parsedFieldMeta.relationshipName) { field.relationshipName = parsedFieldMeta.relationshipName; }
-						if(parsedFieldMeta.type === 'Picklist') {
-							field.picklistValues = parsedFieldMeta.valueSet.valueSetDefinition.value.map((value: any) => ({ fullName: value.fullName, label: value.label }));
-						}
+								if(!object.fields) {
+									object.fields = [];
+								}
 
-						object.fields.push(field);
+								// Get meta information
+								const fieldMeta = readFileSync(path.join(fieldsFolderPath, fieldFile));
+								const parsedFieldMeta = parser.parse(fieldMeta).CustomField;
+								const field: any = {
+									name: parsedFieldMeta.fullName,
+									label: parsedFieldMeta.label,
+									description: parsedFieldMeta.description,
+									type: parsedFieldMeta.type
+								};
+								if(parsedFieldMeta.length) { field.length = parseInt(parsedFieldMeta.length); }
+								if(parsedFieldMeta.required === 'true') { field.required = true; }
+								if(parsedFieldMeta.externalId === 'true') { field.externalId = true; }
+								if(parsedFieldMeta.referenceTo) { field.referenceTo = parsedFieldMeta.referenceTo; }
+								if(parsedFieldMeta.relationshipName) { field.relationshipName = parsedFieldMeta.relationshipName; }
+								if(parsedFieldMeta.type === 'Picklist' && parsedFieldMeta.valueSet) {
+									field.picklistValues = parsedFieldMeta.valueSet.valueSetDefinition.value.map((value: any) => ({ fullName: value.fullName, label: value.label }));
+								}
 
-					});
+								object.fields.push(field);
+							
+							} catch(error) {
+								console.warn(`Object field not processable: ${objectName}/${fieldFile}`);
+								console.warn(error);
+							}
+
+						});
+					}
+
+					// Get record type information
+					const rtFolderPath = path.join(objectPath, 'recordTypes');
+					if(existsSync(rtFolderPath)) {
+						readdirSync(rtFolderPath).forEach((rtFile) => {
+
+							try {
+
+								if(!object.recordTypes) {
+									object.recordTypes = [];
+								}
+
+								// Get meta information
+								const rtMeta = readFileSync(path.join(rtFolderPath, rtFile));
+								const parsedRtMeta = parser.parse(rtMeta).RecordType;
+								const recordType: any = {
+									name: parsedRtMeta.fullName,
+									label: parsedRtMeta.label,
+									description: parsedRtMeta.description,
+									active: parsedRtMeta.active
+								};
+								if(parsedRtMeta.picklistValues) {
+									recordType.picklistValues = parsedRtMeta.picklistValues.map((plField: any) => ({
+										field: plField.picklist,
+										values: plField.values.map((plv: any) => plv.fullName) })
+									);
+								}
+
+								object.recordTypes.push(recordType);
+								
+							} catch(error) {
+								console.warn(`Object record type not processable: ${objectName}/${rtFile}`);
+								console.warn(error);
+							}
+
+						});
+					}
 
 					objectMetadata.push(object);
 				
