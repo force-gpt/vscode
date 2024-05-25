@@ -1,0 +1,1038 @@
+{
+	"Accreditation": {
+		"AccreditationRating": "AAccreditationRating",
+		"AccreditingBody": "AccreditationAccreditingBody",
+		"Status": "AccreditationStatus",
+		"SubType": "AccreditationSubType",
+		"Type": "AccreditationType"
+	},
+	"AccountContactRelation": {
+		"Roles": "AccountContactMultiRoles"
+	},
+	"AccountContactRole": {
+		"Role": "AccountContactRole"
+	},
+	"Account": {
+		"Ownership": "AccountOwnership",
+		"Rating": "AccountRating",
+		"Type": "AccountType",
+		"Industry": "Industry",
+		"AccountSource": "LeadSource"
+	},
+	"AccountCleanInfo": {
+		"Ownership": "AccountOwnership",
+		"Industry": "Industry"
+	},
+	"Lead": {
+		"Rating": "AccountRating",
+		"Industry": "Industry",
+		"LeadSource": "LeadSource",
+		"Status": "LeadStatus",
+		"Salutation": "Salutation"
+	},
+	"AntiCorruptionInitSum": {
+		"EmployeeType": "ACInitSumEmployeeType",
+		"InitiativeType": "ACInitSumInitiativeType",
+		"RecipientCategory": "ACISumRecipientCategory",
+		"Country": "ACorruptionInitSumCountry",
+		"Region": "ACorruptionInitSumRegion"
+	},
+	"ActivityTiming": {
+		"ActivityTime": "ActivityTimeEnum"
+	},
+	"CareRequest": {
+		"AdmissionSource": "AdmissionSource",
+		"AdmissionType": "AdmissionType",
+		"AppealRequestReasonType": "AppealRequestReasonType",
+		"ApprovedLevelOfCare": "ApprovedLevelOfCare",
+		"MemberGender": "CareRequestMemberGender",
+		"MemberPrognosis": "CareRequestMemberPrognosis",
+		"QuantityType": "CareRequestQuantityType",
+		"ClinicalCaseType": "ClinicalCaseType",
+		"CurrentLevelOfCare": "CurrentLevelOfCare",
+		"DecisionReason": "DecisionReason",
+		"DeniedLevelOfCare": "DeniedLevelOfCare",
+		"FacilityRoomBedType": "FacilityRoomBedType",
+		"FinalLevelOfCare": "FinalLevelOfCare",
+		"GrievanceType": "GrievanceType",
+		"ModifiedLevelOfCare": "ModifiedLevelOfCare",
+		"ParProvider": "ParProvider",
+		"PlaceOfService": "PlaceOfService",
+		"CriteriaMet": "ProgressionCriteriaMet",
+		"ReopenReason": "ReopenReason",
+		"RequestedLevelOfCare": "RequestedLevelOfCare",
+		"RequesterType": "RequesterType",
+		"RequestingPractitionerLicense": "RequestingPractitionerLicense",
+		"RequestingPractitionerSpecialty": "RequestingPractitionerSpecialty",
+		"ServicingPractitionerLicense": "ServicingPractitionerLicense",
+		"ServicingPractitionerSpecialty": "ServicingPractitionerSpecialty"
+	},
+	"AllergyIntolerance": {
+		"Category": "AllergyIntoleranceCategory",
+		"Severity": "AllergyIntoleranceSeverity",
+		"Status": "AllergyIntoleranceStatus",
+		"Type": "AllergyIntoleranceType",
+		"VerificationStatus": "AllergyVerificationStatus"
+	},
+	"AssessmentQuestion": {
+		"QuestionCategory": "AQuestionQuestionCategory"
+	},
+	"AppointmentReason": {
+		"AppointmentReason": "AReasonAppointmentReason"
+	},
+	"Assessment": {
+		"AssessmentRating": "AssessmentRating",
+		"AssessmentStatus": "AssessmentStatus"
+	},
+	"AssetAction": {
+		"Category": "AssetActionCategory"
+	},
+	"AssetRelationship": {
+		"RelationshipType": "AssetRelationshipType"
+	},
+	"Asset": {
+		"Status": "AssetStatus",
+		"ConsequenceOfFailure": "ConsequenceOfFailure",
+		"DigitalAssetStatus": "DigitalAssetStatus",
+		"StatusReason": "StatusReason"
+	},
+	"AssociatedLocation": {
+		"Type": "AssociatedLocationType"
+	},
+	"AuthorNote": {
+		"RecipientType": "AuthorNoteRecipientType"
+	},
+	"CareBarrierType": {
+		"CodeType": "BarrierCodeType"
+	},
+	"BoardCertification": {
+		"CertificationType": "BCCertificationType",
+		"Status": "BoardCertificationStatus"
+	},
+	"BenefitType": {
+		"ProcessType": "BenefitProcessType"
+	},
+	"BusinessLicense": {
+		"JurisdictionType": "BLicenseJurisdictionType",
+		"VerificationStatus": "BLicenseVerificationStatus",
+		"Status": "BusinessLicenseStatus",
+		"LicenseClass": "LicenseClassType",
+		"LineOfAuthority": "LineOfAuthorityType",
+		"ResidenceStatus": "ResidenceStatusType"
+	},
+	"CampaignMember": {
+		"Status": "CampaignMemberStatus",
+		"LeadSource": "LeadSource",
+		"Salutation": "Salutation"
+	},
+	"Campaign": {
+		"Status": "CampaignStatus",
+		"Type": "CampaignType"
+	},
+	"CardPaymentMethod": {
+		"CardType": "CardType"
+	},
+	"CareRequestItem": {
+		"AmbulanceTransportReason": "CareAmbulanceTransReason",
+		"AmbulanceTransportType": "CareAmbulanceTransType",
+		"Status": "CareItemStatus",
+		"StatusReason": "CareItemStatusReason",
+		"QuantityType": "CareQuantityType",
+		"ApprovedLevelOfCare": "CRIApprovedLevelOfCare",
+		"ClinicalDetermination": "CRIClinicalDetermination",
+		"CurrentLevelOfCare": "CRICurrentLevelOfCare",
+		"DeniedLevelOfCare": "CRIDeniedLevelOfCare",
+		"ModifiedLevelOfCare": "CRIModifiedLevelOfCare",
+		"Priority": "CRIPriority",
+		"RequestedLevelOfCare": "CRIRequestedLevelOfCare",
+		"RequestType": "CRIRequestType",
+		"ModifiedCodeType": "ModifiedCareCodeType",
+		"CodeType": "RequestedCareCodeType"
+	},
+	"CareBarrier": {
+		"Priority": "CareBarrierPriority",
+		"Status": "CareBarrierStatus"
+	},
+	"CareBenefitVerifyRequest": {
+		"Status": "CareBenefitVerifyRequestStatus"
+	},
+	"CareDeterminant": {
+		"Priority": "CareDeterminantPriority"
+	},
+	"CareDeterminantType": {
+		"Domain": "CareDeterminantTypeDomain",
+		"Type": "CareDeterminantTypeType"
+	},
+	"CareEpisode": {
+		"Status": "CareEpisodeStatus",
+		"Type": "CareEpisodeType"
+	},
+	"CareMetricTarget": {
+		"Type": "CareMetricTargetType"
+	},
+	"CareObservation": {
+		"Category": "CareObservationCategory",
+		"ObservationStatus": "CareObservationStatus",
+		"ProcessingResult": "COProcessingResult",
+		"ValueInterpretation": "COValueInterpretation"
+	},
+	"CarePlanActivity": {
+		"Status": "CarePlanActivityStatus",
+		"ActivityType": "CPAActivityType",
+		"ProhibitedActivity": "CPAProhibitedActivity"
+	},
+	"CarePlan": {
+		"AuthorizationType": "CarePlanAuthorizationType",
+		"Status": "CaseServicePlanStatus"
+	},
+	"CarePlanDetail": {
+		"DetailType": "CarePlanDetailDetailType",
+		"ProblemPriority": "CPDProblemPriority"
+	},
+	"CarePreauthItem": {
+		"Laterality": "CarePreauthItemLaterality"
+	},
+	"CarePreauth": {
+		"Status": "CarePreauthStatus"
+	},
+	"CareProgramEnrollee": {
+		"Status": "CareProgramEnrolleeStatus",
+		"OptOutReasonType": "EnrolleeOptOutReasonType"
+	},
+	"CareProgramGoal": {
+		"Priority": "CareProgramGoalPriority",
+		"Status": "CareProgramGoalStatus"
+	},
+	"CareProgramProduct": {
+		"Status": "CareProgramProductStatus",
+		"Availability": "CProgramProductAvailability"
+	},
+	"CareProgramProvider": {
+		"Role": "CareProgramProviderRole",
+		"Status": "CareProgramProviderStatus"
+	},
+	"CareProgram": {
+		"Status": "CareProgramStatus"
+	},
+	"CareProgramTeamMember": {
+		"Role": "CareProgramTeamMemberRole"
+	},
+	"CareRegisteredDevice": {
+		"Status": "CareRegisteredDeviceStatus",
+		"NameType": "CRDNameType"
+	},
+	"CareRequestExtension": {
+		"AmbulanceTransportReason": "CareRequestExtensionAmbulanceTransportReason",
+		"AmbulanceTransportType": "CareRequestExtensionAmbulanceTransportType",
+		"NursingHomeResidentialStatus": "CareRequestExtensionNursingHomeResidentialStatus",
+		"RequestType": "CareRequestExtensionRequestType",
+		"ServiceLevel": "CareRequestExtensionServiceLevel",
+		"CaseSubStatus": "CRECaseSubStatus",
+		"DocumentAttachmentStatus": "CREDocumentAttachmentStatus",
+		"IndependentReviewDetermination": "CREIndependentReviewDetermination",
+		"AuthorizationRefIdentifier": "CREPriorAuthRequestIdentifier",
+		"PriorDischargeStatus": "CREPriorDischargeStatus",
+		"ReopenRequestOutcome": "CREReopenRequestOutcome",
+		"ReopenRequestType": "CREReopenRequestType",
+		"RequestOutcome": "CRERequestOutcome"
+	},
+	"CareRequestReviewer": {
+		"Status": "CareRequestReviewerStatus",
+		"ReviewerType": "CRReviewerReviewerType"
+	},
+	"CareSpecialty": {
+		"SpecialtyType": "CareSpecialtySpecialtyType",
+		"SpecialtyUsage": "CareSpecialtySpecialtyUsage"
+	},
+	"CareTaxonomy": {
+		"TaxonomyType": "CareTaxonomyTaxonomyType"
+	},
+	"CareTeam": {
+		"Status": "CareTeamStatus"
+	},
+	"CaseContactRole": {
+		"Role": "CaseContactRole"
+	},
+	"CaseEpisode": {
+		"Subtype": "CaseEpisodeSubType",
+		"Type": "CaseEpisodeType"
+	},
+	"Case": {
+		"Origin": "CaseOrigin",
+		"Priority": "CasePriority",
+		"Reason": "CaseReason",
+		"Status": "CaseStatus",
+		"Type": "CaseType"
+	},
+	"CoverageBenefit": {
+		"CoverageType": "CBCoverageType"
+	},
+	"CoverageBenefitItemLimit": {
+		"TermType": "CBenefitItemLimitTermType",
+		"CoverageLevel": "CBItemLimitCoverageLevel",
+		"NetworkType": "CBItemLimitNetworkType"
+	},
+	"CategorizedCareFeeAgreement": {
+		"LineofBusiness": "CCFALineOfBusiness"
+	},
+	"CrbnCreditProject": {
+		"AdditionalBenefits": "CCPAdditionalBenefits",
+		"MitigationType": "CCProjectMitigationType",
+		"StandardsAgencyName": "CCPStandardsAgencyName",
+		"ProjectType": "CCreditProjectProjectType"
+	},
+	"CareDiagnosis": {
+		"PresentOnAdmission": "CDPresentOnAdmission",
+		"CodeType": "DiagnosisCodeType",
+		"DischargeCodeType": "DischargeDiagnosisCodeType",
+		"ModifiedCodeType": "ModifiedDiagnosisCodeType"
+	},
+	"ClinicalEncounterIdentifier": {
+		"IdUsageType": "CEIdentifierIdUsageType"
+	},
+	"ClinicalEncounter": {
+		"AdmissionSource": "CEncounterAdmissionSource",
+		"Category": "CEncounterCategory",
+		"DietPreference": "CEncounterDietPreference",
+		"ServiceType": "CEncounterServiceType",
+		"SpecialCourtesy": "CEncounterSpecialCourtesy",
+		"Status": "CEncounterStatus"
+	},
+	"ClinicalEncounterFacility": {
+		"Status": "CEncounterFacilityStatus"
+	},
+	"CareEpisodeDetail": {
+		"DetailType": "CEpisodeDetailDetailType"
+	},
+	"ChangeRequestRelatedItem": {
+		"ImpactLevel": "ChangeRequestRelatedItemImpactLevel"
+	},
+	"ChangeRequest": {
+		"BusinessReason": "ChangeRequestBusinessReason",
+		"Category": "ChangeRequestCategory",
+		"Impact": "ChangeRequestImpact",
+		"Priority": "ChangeRequestPriority",
+		"RiskLevel": "ChangeRequestRiskLevel",
+		"Status": "ChangeRequestStatus"
+	},
+	"PersonEducation": {
+		"ClassRankReportingFormat": "ClassRankReportingFormat",
+		"ClassRankWeightingType": "ClassRankWeightingType",
+		"EducationLevel": "EducationLevel",
+		"GpaWeightingType": "GpaWeightingType"
+	},
+	"ClinicalAlert": {
+		"Categories": "ClinicalAlertCategories",
+		"Status": "ClinicalAlertStatus"
+	},
+	"ClinicalDetectedIssue": {
+		"SeverityLevel": "ClinicalDetectedIssueSeverityLevel",
+		"Status": "ClinicalDetectedIssueStatus"
+	},
+	"CareObservationComponent": {
+		"ValueType": "COComponentValueType",
+		"ValueInterpretation": "COCValueInterpretation"
+	},
+	"CodeSet": {
+		"CodeSetType": "CodeSetCodeSetType"
+	},
+	"EngagementInteraction": {
+		"CommunicationChannel": "CommunicationChannel",
+		"Sentiment": "EngagementSentimentEnum",
+		"Status": "EngagementStatusEnum",
+		"Type": "EngagementTypeEnum"
+	},
+	"Supplier": {
+		"CompanyRelationshipType": "CompanyRelationshipType"
+	},
+	"ContactPointAddress": {
+		"AddressType": "ContactPointAddressType",
+		"UsageType": "ContactPointUsageType"
+	},
+	"ContactRequest": {
+		"RequestReason": "ContactRequestReason",
+		"Status": "ContactRequestStatus"
+	},
+	"OpportunityContactRole": {
+		"Role": "ContactRole"
+	},
+	"ContractContactRole": {
+		"Role": "ContractContactRole"
+	},
+	"ContractLineItem": {
+		"Status": "ContractLineItemStatus"
+	},
+	"Contract": {
+		"Status": "ContractStatus"
+	},
+	"CarePlanActivityDetail": {
+		"DetailType": "CPADetailDetailType"
+	},
+	"CareProviderAdverseAction": {
+		"ActionType": "CPAdverseActionActionType",
+		"Status": "CPAdverseActionStatus",
+		"RegulatoryBodyType": "RegulatoryBodyType"
+	},
+	"ContractPaymentAgreement": {
+		"AgreementType": "CPAgreementAgreementType",
+		"LineofBusiness": "CPAgreementLineofBusiness"
+	},
+	"CareProgramEligibilityRule": {
+		"Status": "CPEligibilityRuleStatus"
+	},
+	"CareProgramEnrolleeProduct": {
+		"Status": "CPEnrolleeProductStatus"
+	},
+	"CareProgramEnrollmentCard": {
+		"Status": "CPEnrollmentCardStatus"
+	},
+	"CareProviderFacilitySpecialty": {
+		"SpecialtyRole": "CPFSpecialtySpecialtyRole"
+	},
+	"CaseProceedingParticipant": {
+		"Role": "CPPRole"
+	},
+	"CarePlanTemplateProblem": {
+		"Priority": "CPTemplateProblemPriority"
+	},
+	"CareRequestDrug": {
+		"DrugAdministrationSetting": "CRDDrugAdministrationSetting",
+		"Priority": "CCRDPriority",
+		"RequestType": "CRDRequestType",
+		"Status": "CRDStatus",
+		"StatusReason": "CRDStatusReason",
+		"ClinicalDetermination": "DrugClinicalDetermination",
+		"ModifiedCodeType": "ModifiedDrugCodeType",
+		"CodeType": "RequestedDrugCodeType"
+	},
+	"CodeSetBundle": {
+		"Type": "CSBundleUsageType"
+	},
+	"ClinicalServiceRequest": {
+		"Type": "CServiceRequestIntent",
+		"Priority": "CServiceRequestPriority",
+		"Status": "CServiceRequestStatus"
+	},
+	"ClinicalServiceRequestDetail": {
+		"DetailType": "CSRequestDetailDetailType"
+	},
+	"DocumentChecklistItem": {
+		"Status": "DChecklistItemStatus"
+	},
+	"DiagnosticSummary": {
+		"Category": "DiagnosticSummaryCategory",
+		"Status": "DiagnosticSummaryStatus",
+		"DocumentStage": "DSDocumentStage",
+		"UsageType": "DSummaryUsageType"
+	},
+	"DivrsEquityInclSum": {
+		"DiversityType": "DEInclSumDiversityType",
+		"EmployeeType": "DEInclSumEmployeeType",
+		"EmploymentType": "DEInclSumEmploymentType",
+		"Gender": "DEInclSumGender",
+		"DiversityCategory": "DEISumDiversityCategory",
+		"Location": "DivrsEquityInclSumLocation",
+		"Race": "DivrsEquityInclSumRace"
+	},
+	"ClinicalDetectedIssueDetail": {
+		"DetailType": "DIssueDetailType"
+	},
+	"DiagnosticSummaryDetail": {
+		"DocumentRelationType": "DSDDocumentRelationType",
+		"DetailType": "DSummaryDetailDetailType"
+	},
+	"EngagementChannelType": {
+		"ContactPointType": "ECTypeContactPointType",
+		"UsageType": "ProductLineEnum"
+	},
+	"EnrollmentEligibilityCriteria": {
+		"Status": "EEligibilityCriteriaStatus"
+	},
+	"PersonEmployment": {
+		"Occupation": "EmploymentOccupation",
+		"EmploymentStatus": "EmploymentStatus",
+		"EmploymentType": "PersonEmploymentType",
+		"VerificationStatus": "PersonVerificationStatus"
+	},
+	"EngagementAttendee": {
+		"Role": "EngagementAttendeeRole"
+	},
+	"BenefitAssignment": {
+		"Status": "EnrollmentStatus"
+	},
+	"Entitlement": {
+		"Type": "EntitlementType"
+	},
+	"EmpBenefitSummary": {
+		"EmployeeBenefitType": "EBSEmployeeBenefitType",
+		"PercentageCalcType": "EBSPercentageCalcType",
+		"BenefitUsage": "EBSummaryBenefitUsage",
+		"EmploymentType": "EBSummaryEmploymentType"
+	},
+	"EmployeeDemographicSum": {
+		"AgeGroup": "EDemographicSumAgeGroup",
+		"Gender": "EDemographicSumGender",
+		"Region": "EDemographicSumRegion",
+		"ReportType": "EDemographicSumReportType",
+		"WorkType": "EDemographicSumWorkType",
+		"EmploymentType": "EDSumEmploymentType"
+	},
+	"EmployeeDevelopmentSum": {
+		"Gender": "EDevelopmentSumGender",
+		"EmployeeType": "EDSumEmployeeType",
+		"ProgramCategory": "EDSumProgramCategory"
+	},
+	"EconomicPerformanceSum": {
+		"Market": "EPSumMarket",
+		"PerformanceCategory": "EPSumPerformanceCategory",
+		"PerformanceType": "EPSumPerformanceType",
+		"Region": "EPSumRegion"
+	},
+	"EmssnRdctnCommitment": {
+		"CompanyBusinessRegion": "ERCompanyBusinessRegion",
+		"CompanySector": "ERCompanySector"
+	},
+	"EmssnReductionTarget": {
+		"TargetType": "EReductionTargetTargetType",
+		"OtherTargetKpi": "ERTargetOtherTargetKpi",
+		"TargetSettingMethod": "ERTTargetSettingMethod"
+	},
+	"Event": {
+		"Subject": "EventSubject",
+		"Type": "EventType"
+	},
+	"FinanceTransaction": {
+		"EventAction": "FinanceEventAction"
+	},
+	"FinanceBalanceSnapshot": {
+		"EventTypeFinanceTransaction": "FinanceEventType"
+	},
+	"Period": {
+		"PeriodLabel": "FiscalYearPeriodName",
+		"QuarterLabel": "FiscalYearQuarterName"
+	},
+	"FiscalYearSettings": {
+		"PeriodPrefix": "FiscalYearPeriodPrefix",
+		"QuarterPrefix": "FiscalYearQuarterPrefix"
+	},
+	"n/a": {
+		"undefined": "ForecastingItemCategory"
+	},
+	"FrgtHaulingEmssnFctr": {
+		"FreightHaulingMode": "FreightHaulingMode"
+	},
+	"FrgtHaulingEnrgyUse": {
+		"FreightHaulingMode": "FreightHaulingMode"
+	},
+	"Scope3CrbnFtprnt": {
+		"AuditApprovalStatus": "FtprntAuditApprovalStatus",
+		"FootprintStage": "Scope3CrbnFtprntStage"
+	},
+	"StnryAssetCrbnFtprnt": {
+		"AuditApprovalStatus": "FtprntAuditApprovalStatus",
+		"FootprintStage": "StnryAssetCrbnFtprntStage",
+		"AllocationStatus": "StnryAstCrbnFtAllocStatus",
+		"DataGapStatus": "StnryAstCrbnFtDataGapSts"
+	},
+	"VehicleAssetCrbnFtprnt": {
+		"AuditApprovalStatus": "FtprntAuditApprovalStatus",
+		"FootprintStage": "VehicleAstCrbnFtprntStage",
+		"VehicleType": "VehicleType"
+	},
+	"WasteFootprint": {
+		"AuditApprovalStatus": "FtprntAuditApprovalStatus",
+		"FootprintStage": "WasteFootprintStage"
+	},
+	"FulfillmentOrder": {
+		"Status": "FulfillmentStatus",
+		"Type": "FulfillmentType"
+	},
+	"GoalAssignmentDetail": {
+		"DetailType": "GADetailDetailType"
+	},
+	"GoalAssignment": {
+		"ProgressionStatus": "GoalAssignmentProgressionStatus",
+		"Status": "GoalAssignmentStatus"
+	},
+	"GoalDefinition": {
+		"Category": "GoalDefinitionCategory",
+		"UsageType": "GoalDefinitionUsageType"
+	},
+	"GovtFinancialAsstSum": {
+		"Type": "GovtFinancialAsstSumType"
+	},
+	"HealthcareFacility": {
+		"LocationType": "HCFacilityLocationType"
+	},
+	"HealthCareProcedure": {
+		"Category": "HcpCategory",
+		"CodeType": "HcpCodeType"
+	},
+	"HealthCareDiagnosis": {
+		"Category": "HealthCareDiagnosisCategory",
+		"CodeType": "HealthCareDiagnosisCodeType",
+		"Gender": "HealthCareDiagnosisGender"
+	},
+	"HealthcareProvider": {
+		"Status": "HealthcareProviderStatus",
+		"ProviderClass": "HProviderProviderClass",
+		"ProviderType": "HProviderProviderType"
+	},
+	"HealthConditionDetail": {
+		"DetailType": "HealthConditionDetailType"
+	},
+	"HealthCondition": {
+		"Severity": "HealthConditionSeverity",
+		"ConditionStatus": "HealthConditionStatus",
+		"Type": "HealthConditionType",
+		"DiagnosticStatus": "HealthDiagnosticStatus"
+	},
+	"HealthcareFacilityNetwork": {
+		"GenderRestriction": "HFNetworkGenderRestriction",
+		"PanelStatus": "HFNetworkPanelStatus"
+	},
+	"HealthcarePayerNetwork": {
+		"NetworkType": "HPayerNetworkNetworkType",
+		"LineofBusiness": "HPayerNwkLineOfBusiness"
+	},
+	"HealthcarePractitionerFacility": {
+		"GenderRestriction": "HPFGenderRestriction",
+		"TerminationReason": "HPFTerminationReason"
+	},
+	"HealthcareProviderNpi": {
+		"NpiType": "HProviderNpiNpiType"
+	},
+	"HealthcareProviderSpecialty": {
+		"SpecialtyRole": "HPSpecialtySpecialtyRole"
+	},
+	"HealthScoreActionLog": {
+		"ActionStatus": "HSActionLogActionStatus"
+	},
+	"IndividualApplication": {
+		"Status": "IaApplnStatus",
+		"Category": "IaAuthCategory",
+		"InternalStatus": "IaInternalStatus",
+		"RejectionReason": "IARejectionReason",
+		"ServiceType": "IAServiceType"
+	},
+	"IndividualApplicationItem": {
+		"Status": "IAItemStatus"
+	},
+	"IdeaTheme": {
+		"Categories": "IdeaCategory",
+		"Status": "IdeaThemeStatus"
+	},
+	"Idea": {
+		"Categories": "IdeaMultiCategory",
+		"Status": "IdeaStatus"
+	},
+	"Identifier": {
+		"IdUsageType": "IdentifierIdUsageType"
+	},
+	"InsurancePolicy": {
+		"FnolChannel": "IFnolChannel",
+		"CancellationReasonType": "IPCancelationReasonType",
+		"AuditTerm": "IPolicyAuditTerm",
+		"ChangeSubtype": "IPolicyChangeSubType",
+		"ChangeType": "IPolicyChangeType",
+		"RenewalChannel": "IPolicyChannel",
+		"PlanTier": "IPolicyPlanTier",
+		"PlanType": "IPolicyPlanType",
+		"PolicyType": "IPolicyPolicyType",
+		"PremiumCalculationMethod": "IPolicyPremiumCalcMethod",
+		"PremiumFrequency": "IPolicyPremiumFrequency",
+		"PremiumPaymentType": "IPolicyPremiumPaymentType",
+		"Status": "IPolicyStatus",
+		"Substatus": "IPolicySubStatusCode",
+		"PolicyTerm": "IPolicyTerm"
+	},
+	"Incident": {
+		"Category": "IncidentCategory",
+		"Impact": "IncidentImpact",
+		"Priority": "IncidentPriority",
+		"ReportedMethod": "IncidentReportedMethod",
+		"Status": "IncidentStatus",
+		"SubCategory": "IncidentSubCategory",
+		"Type": "IncidentType",
+		"Urgency": "IncidentUrgency"
+	},
+	"IncidentRelatedItem": {
+		"ImpactLevel": "IncidentRelatedItemImpactLevel",
+		"ImpactType": "IncidentRelatedItemImpactType"
+	},
+	"LeadCleanInfo": {
+		"Industry": "Industry"
+	},
+	"CareInterventionType": {
+		"CodeType": "InterventionCodeType",
+		"InterventionType": "TypesOfIntervention"
+	},
+	"InsurancePolicyCoverage": {
+		"BenefitPaymentFrequency": "IPCBenefitPaymentFrequency",
+		"Category": "IPCCategory",
+		"CategoryGroup": "IPCCategoryGroup",
+		"DeathBenefitOptionType": "IPCDeathBenefitOptionType",
+		"IncomeOptionType": "IPCIncomeOptionType",
+		"LimitRange": "IPCLimitRange"
+	},
+	"InsurancePolicyTransaction": {
+		"Status": "IPolicyTransactionStatus",
+		"Type": "IPolicyTransactionType"
+	},
+	"InsurancePolicyOwner": {
+		"PolicyOwnerType": "IPOwnerPOwnerType"
+	},
+	"InsurancePolicyParticipant": {
+		"Role": "IPParticipantRole",
+		"RelationshipToInsured": "IPPRelationshipToInsured"
+	},
+	"Contact": {
+		"LeadSource": "LeadSource",
+		"Salutation": "Salutation"
+	},
+	"Opportunity": {
+		"LeadSource": "LeadSource",
+		"StageName": "OpportunityStage",
+		"Type": "OpportunityType"
+	},
+	"Location": {
+		"LocationType": "LocationType"
+	},
+	"BusinessLicenseApplication": {
+		"ApplicationCategory": "LPIApplnCategory",
+		"Status": "LPIApplnStatus",
+		"Category": "RegAuthCategory"
+	},
+	"Medication": {
+		"MedicationCategory": "MedicationCategoryEnum",
+		"Status": "MedicationStatus"
+	},
+	"MedicationDispense": {
+		"MedAdministrationSettingCategory": "MedicationDispenseMedAdministrationSettingCategory",
+		"Status": "MedicationDispenseStatus",
+		"SubstitutionReason": "MedicationDispenseSubstitutionReason",
+		"SubstitutionType": "MedicationDispenseSubstitutionType"
+	},
+	"MedicationStatement": {
+		"Status": "MedicationStatementStatus",
+		"DeliverySetting": "MStatementDeliverySetting"
+	},
+	"MedicationTherapyReview": {
+		"SurrogateType": "MedReviewRepresentativeType",
+		"ReviewSubtype": "MedTherapyReviewSubtype"
+	},
+	"MemberPlan": {
+		"PrimarySecondaryTertiary": "MemberPlanPrimarySecondaryTertiary",
+		"RelationshipToSubscriber": "MemberPlanRelToSub",
+		"Status": "MemberPlanStatus",
+		"VerificationStatus": "MemberPlanVerificStatus"
+	},
+	"Individual": {
+		"MilitaryService": "MilitaryService"
+	},
+	"MedicationRequest": {
+		"Priority": "MRequestPriority",
+		"Status": "MRequestStatus",
+		"TherapyDuration": "MRequestTherapyDuration",
+		"Type": "MRequestType"
+	},
+	"MedicationStatementDetail": {
+		"DetailType": "MStatementDetailType"
+	},
+	"OcrDocumentScanResult": {
+		"OcrService": "OcrService",
+		"OcrStatus": "OcrStatus"
+	},
+	"OrgIncidentSummary": {
+		"HazardType": "OIncidentSummaryHazardType",
+		"CorrectiveActionType": "OISCorrectiveActionType",
+		"IncidentSubtype": "OISummaryIncidentSubtype",
+		"IncidentType": "OISummaryIncidentType",
+		"PenaltyType": "OISummaryPenaltyType"
+	},
+	"OpportunityCompetitor": {
+		"CompetitorName": "OpportunityCompetitor"
+	},
+	"OrderItemSummaryChange": {
+		"Reason": "OrderItemSummaryChgRsn"
+	},
+	"Order": {
+		"Status": "OrderStatus",
+		"Type": "OrderType"
+	},
+	"OrderSummaryRoutingSchedule": {
+		"Reason": "OrderSummaryRoutingSchdRsn"
+	},
+	"OrderSummary": {
+		"Status": "OrderSummaryStatus"
+	},
+	"PartnerRole": {
+		"ReverseRole": "PartnerRole"
+	},
+	"PartyProfile": {
+		"CountryofBirth": "PartyProfileCountryofBirth",
+		"EmploymentType": "PartyProfileEmploymentType",
+		"FundSource": "PartyProfileFundSource",
+		"Gender": "PartyProfileGender",
+		"ResidentType": "PartyProfileResidentType",
+		"ReviewDecision": "PartyProfileReviewDecision",
+		"RiskType": "PartyProfileRiskType",
+		"Stage": "PartyProfileStage",
+		"CreditScoreProvider": "PPCreditScoreProvider",
+		"PrimaryIdentifierType": "PPPrimaryIdentifierType",
+		"CountryOfDomicile": "PProfileCountryOfDomicile",
+		"EmploymentIndustry": "PProfileEmploymentIndustry",
+		"Nationality": "PProfileNationality",
+		"OffBoardingReason": "PProfileOffBoardingReason",
+		"TaxpayerIdentificationType": "PPTaxIdentificationType"
+	},
+	"PartyScreeningStep": {
+		"Type": "PartyScreeningStepType",
+		"ResultCode": "PScreeningStepResultCode",
+		"Status": "PScreeningStepStatus",
+		"MatchedFieldList": "PSStepMatchedFieldList"
+	},
+	"PartyScreeningSummary": {
+		"Status": "PartyScreeningSummaryStatus",
+		"ResultOverrideReason": "PSSResultOverrideReason",
+		"ScreeningDecision": "PSSummaryScreeningDecision"
+	},
+	"PatientImmunization": {
+		"Status": "PatientImmunizationStatus"
+	},
+	"ProductEmissionsFactor": {
+		"EmssnFctrDataSourceType": "PEFEFctrDataSourceType"
+	},
+	"PersonLanguage": {
+		"Language": "PersonLanguageLanguage",
+		"SpeakingProficiencyLevel": "PersonLanguageSpeakingProficiencyLevel",
+		"WritingProficiencyLevel": "PersonLanguageWritingProficiencyLevel"
+	},
+	"PersonName": {
+		"NameUsageType": "PersonNameNameUsageType"
+	},
+	"PatientHealthReaction": {
+		"Severity": "PHealthReactionSeverity"
+	},
+	"PartyIdentityVerification": {
+		"Result": "PIdentityVerificationResult",
+		"Status": "PIdentityVerificationStatus",
+		"VerifiedBy": "PIVerificationVerifiedBy",
+		"OverriddenResult": "PIVOverriddenResult"
+	},
+	"PartyIdentityVerificationStep": {
+		"Status": "PIVerificationStepStatus",
+		"Type": "PIVerificationStepType",
+		"VerificationDecision": "PIVSVerificationDecision"
+	},
+	"PartyIdentityVerificationResult": {
+		"OverrideReason": "PIVResultOverrideReason"
+	},
+	"PlanBenefit": {
+		"Status": "PlanBenefitStatus"
+	},
+	"PatientMedicationDosage": {
+		"DosageDefinitionType": "PMDDosageDefinitionType",
+		"DosageQuantityType": "PMDosageDosageAmountType",
+		"DosageRateType": "PMDosageRateType"
+	},
+	"PatientMedicalProcedureDetail": {
+		"DetailType": "PMPDetailDetailType"
+	},
+	"PatientMedicalProcedure": {
+		"Outcome": "PMPOutcome",
+		"Status": "PMPStatus"
+	},
+	"PartyProfileAddress": {
+		"AddressType": "PProfileAddressAddressType"
+	},
+	"PartyProfileRisk": {
+		"RiskCategory": "PProfileRiskRiskCategory",
+		"OverridenRiskCategory": "PPROverridenRiskCategory"
+	},
+	"Problem": {
+		"Category": "ProblemCategory",
+		"Impact": "ProblemImpact",
+		"Priority": "ProblemPriority",
+		"Status": "ProblemStatus",
+		"SubCategory": "ProblemSubCategory",
+		"Urgency": "ProblemUrgency"
+	},
+	"ProblemDefinition": {
+		"Category": "ProblemDefinitionCategory",
+		"Priority": "ProblemDefinitionPriority",
+		"UsageType": "ProblemDefinitionUsageTypeEnum"
+	},
+	"ProblemRelatedItem": {
+		"ImpactLevel": "ProblemRelatedItemImpactLevel",
+		"ImpactType": "ProblemRelatedItemImpactType"
+	},
+	"ProcessException": {
+		"Category": "ProcessExceptionCategory",
+		"Priority": "ProcessExceptionPriority",
+		"Severity": "ProcessExceptionSeverity",
+		"Status": "ProcessExceptionStatus"
+	},
+	"Product2": {
+		"Family": "Product2Family",
+		"QuantityUnitOfMeasure": "QuantityUnitOfMeasure"
+	},
+	"ProductRequestLineItem": {
+		"Status": "ProdRequestLineItemStatus"
+	},
+	"ProductRequest": {
+		"Status": "ProductRequestStatus"
+	},
+	"PartyScreeningSummaryS": {
+		"creenedBy": "PSSummaryScreenedBy"
+	},
+	"PurchaserPlan": {
+		"Affiliation": "PurchaserPlanAffiliation",
+		"PlanStatus": "PurchaserPlanStatus",
+		"PlanType": "PurchaserPlanType"
+	},
+	"ReturnOrderLineItem": {
+		"QuantityUnitOfMeasure": "QuantityUnitOfMeasure",
+		"ProcessingPlan": "ReturnOrderLineItemProcessPlan",
+		"ReasonForRejection": "ReturnOrderLineItemReasonForRejection",
+		"ReasonForReturn": "ReturnOrderLineItemReasonForReturn",
+		"RepaymentMethod": "ReturnOrderLineItemRepaymentMethod"
+	},
+	"Question": {
+		"Origin": "QuestionOrigin"
+	},
+	"QuickText": {
+		"Category": "QuickTextCategory",
+		"Channel": "QuickTextChannel"
+	},
+	"Quote": {
+		"Status": "QuoteStatus"
+	},
+	"ReceivedDocument": {
+		"Direction": "ReceivedDocumentDirection",
+		"OcrStatus": "ReceivedDocumentOcrStatus",
+		"Priority": "ReceivedDocumentPriority",
+		"Status": "ReceivedDocumentStatus"
+	},
+	"UserTerritory2Association": {
+		"RoleInTerritory": "RoleInTerritory"
+	},
+	"ResourceAbsence": {
+		"Type": "ResourceAbsenceType"
+	},
+	"ReturnOrder": {
+		"ShipmentType": "ReturnOrderShipmentType",
+		"Status": "ReturnOrderStatus"
+	},
+	"OpportunityTeamMember": {
+		"TeamMemberRole": "SalesTeamRole"
+	},
+	"UserAccountTeamMember": {
+		"TeamMemberRole": "SalesTeamRole"
+	},
+	"UserTeamMember": {
+		"TeamMemberRole": "SalesTeamRole"
+	},
+	"AccountTeamMember": {
+		"TeamMemberRole": "SalesTeamRole"
+	},
+	"ServiceAppointmentGroup": {
+		"Status": "SAppointmentGroupStatus"
+	},
+	"ScorecardMetric": {
+		"Category": "ScorecardMetricCategory"
+	},
+	"SustainabilityScorecard": {
+		"ScienceBasedTargetStatus": "ScienceBasedTargetStatus",
+		"SupplierClassification": "SupplierClassification",
+		"SupplierEmssnRdctnCmtType": "SupplierEmssnRdctnCmtTypev",
+		"SupplierReportingScope": "SupplierReportingScope",
+		"SupplierTier": "SupplierTier",
+		"Status": "SustainabilityScorecardStatus"
+	},
+	"SocialContributionSum": {
+		"Category": "SContributionSumCategory",
+		"Type": "SocialContributionSumType"
+	},
+	"ServiceAppointment": {
+		"Status": "ServiceAppointmentStatus",
+		"AppointmentType": "WorkTypeDefApptType"
+	},
+	"ServiceContract": {
+		"ApprovalStatus": "ServiceContractApprovalStatus"
+	},
+	"CarePlanTemplate": {
+		"Status": "ServicePlanTemplateStatus"
+	},
+	"ServiceTerritoryMember": {
+		"Role": "ServTerrMemRoleType"
+	},
+	"Shift": {
+		"Status": "ShiftStatus"
+	},
+	"SocialPost": {
+		"Classification": "SocialPostClassification",
+		"EngagementLevel": "SocialPostEngagementLevel",
+		"ReviewedStatus": "SocialPostReviewedStatus"
+	},
+	"Solution": {
+		"Status": "SolutionStatus"
+	},
+	"Scope3EmssnSrc": {
+		"BusinessRegion": "SourceBusinessRegion"
+	},
+	"StnryAssetEnvrSrc": {
+		"BusinessRegion": "SourceBusinessRegion",
+		"StationaryAssetType": "StnryAstEvSrcStnryAstTyp"
+	},
+	"VehicleAssetEmssnSrc": {
+		"BusinessRegion": "SourceBusinessRegion",
+		"VehicleType": "VehicleType"
+	},
+	"StnryAssetWaterFtprnt": {
+		"FootprintStage": "StnryAssetWaterFtprntStage"
+	},
+	"Task": {
+		"Priority": "TaskPriority",
+		"Status": "TaskStatus",
+		"Subject": "TaskSubject",
+		"Type": "TaskType"
+	},
+	"TrackedCommunicationDetail": {
+		"DetailType": "TCDDetailType"
+	},
+	"TrackedCommunication": {
+		"Priority": "TCPriority",
+		"Status": "TCStatus",
+		"StatusReason": "TCStatusReason",
+		"Type": "TrackedCommunicationType"
+	},
+	"EngagementTopic": {
+		"ProcessFailureReason": "TopicFailureReasonEnum",
+		"ProcessStatus": "TopicProcessStatusEnum"
+	},
+	"ConsumptionSchedule": {
+		"UnitOfMeasure": "UnitOfMeasure"
+	},
+	"UnitOfMeasure": {
+		"Type": "UnitOfMeasureType"
+	},
+	"WstDispoEmssnFctrSetItm": {
+		"DisposalType": "WasteDisposalType",
+		"WasteType": "WasteType"
+	},
+	"WorkOrderLineItem": {
+		"Priority": "WorkOrderLineItemPriority",
+		"Status": "WorkOrderLineItemStatus"
+	},
+	"WorkOrder": {
+		"Priority": "WorkOrderPriority",
+		"Status": "WorkOrderStatus"
+	},
+	"WorkStep": {
+		"Status": "WorkStepStatus"
+	},
+	"WorkTypeGroup": {
+		"AdditionalInformation": "WorkTypeGroupAddInfo"
+	}
+}

@@ -13,6 +13,8 @@ const AUTH_OPTION_WEB = `Go to ForceGPT`;
 const FETCH_TRIES = 3;
 const PROJECT_PATH = (workspace.workspaceFolders ?? [])[0].uri.fsPath;
 
+const standardValueSetMapping = require('../assets/stdValueSetMap.json');
+
 
 /**
  * Send an API request to the ForceGPT API.
@@ -162,7 +164,11 @@ const eraseCredentials = (context: ExtensionContext): void => {
 const getMetadataContext = (context: ExtensionContext): Object => {
 	
 	const sfDefaultPath = getSfDefaultPath();
-	const objectFolderPath = path.join(sfDefaultPath, 'main', 'default', 'objects');
+	const metadataPath = path.join(sfDefaultPath, 'main', 'default');
+	const objectFolderPath = path.join(metadataPath, 'objects');
+	const globalValueSetsPath = path.join(metadataPath, 'globalValueSets');
+	const standardValueSetsPath = path.join(metadataPath, 'standardValueSets');
+	
 
 	let objectMetadata: any[] = [];
 
@@ -203,19 +209,62 @@ const getMetadataContext = (context: ExtensionContext): Object => {
 								// Get meta information
 								const fieldMeta = readFileSync(path.join(fieldsFolderPath, fieldFile));
 								const parsedFieldMeta = parser.parse(fieldMeta).CustomField;
+								
+								const isCustomField = parsedFieldMeta.fullName.endsWith('__c');
 								const field: any = {
 									name: parsedFieldMeta.fullName,
-									label: parsedFieldMeta.label,
-									description: parsedFieldMeta.description,
 									type: parsedFieldMeta.type
 								};
+
+								// Custom field
+								if(isCustomField) {
+									field.label = parsedFieldMeta.label;
+									field.description = parsedFieldMeta.description;
+								}
+
 								if(parsedFieldMeta.length) { field.length = parseInt(parsedFieldMeta.length); }
 								if(parsedFieldMeta.required === 'true') { field.required = true; }
 								if(parsedFieldMeta.externalId === 'true') { field.externalId = true; }
 								if(parsedFieldMeta.referenceTo) { field.referenceTo = parsedFieldMeta.referenceTo; }
 								if(parsedFieldMeta.relationshipName) { field.relationshipName = parsedFieldMeta.relationshipName; }
-								if(parsedFieldMeta.type === 'Picklist' && parsedFieldMeta.valueSet) {
-									field.picklistValues = parsedFieldMeta.valueSet.valueSetDefinition.value.map((value: any) => ({ fullName: value.fullName, label: value.label }));
+
+								if(parsedFieldMeta.type === 'Picklist') {
+
+									let metaValues;
+
+									// Field level value set
+									if(parsedFieldMeta.valueSet?.valueSetDefinition) {
+
+										metaValues = parsedFieldMeta.valueSet.valueSetDefinition.value;
+
+									// Standard or global value set
+									} else {
+
+										let valueSetFilePath;
+										if(isCustomField) {
+											valueSetFilePath = path.join(globalValueSetsPath,`${parsedFieldMeta.valueSet.valueSetName}.globalValueSet-meta.xml`);
+										} else {
+											const stdValueSet = standardValueSetMapping[objectName][parsedFieldMeta.fullName];
+											if(stdValueSet) {
+												valueSetFilePath = path.join(standardValueSetsPath,`${stdValueSet}.standardValueSet-meta.xml`);
+											}
+										}
+										
+										if(valueSetFilePath && existsSync(valueSetFilePath)) {
+											
+											const valueSetMeta = readFileSync(valueSetFilePath);
+											metaValues = isCustomField?
+												parser.parse(valueSetMeta).GlobalValueSet.customValue
+											 :	parser.parse(valueSetMeta).StandardValueSet.standardValue;
+											
+										}
+										
+									}
+
+									if(metaValues) {
+										field.picklistValues = metaValues.map((value: any) => ({ fullName: value.fullName, label: value.label }));
+									}
+
 								}
 
 								object.fields.push(field);

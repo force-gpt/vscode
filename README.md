@@ -58,7 +58,6 @@ None.
 
 ## Release Notes
 
-### 0.4.1-beta
+### 0.4.2-beta
 
-- Handle empty value sets for picklist and other unexpected situations
-- Record type metadata context support
+- Standard and global value sets support for picklists

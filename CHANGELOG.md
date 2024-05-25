@@ -1,5 +1,9 @@
 # Change Log
 
+### 0.4.2-beta
+
+- Standard and global value sets support for picklists
+
 ### 0.4.1-beta
 
 - Handle empty value sets for picklist and other unexpected situations
