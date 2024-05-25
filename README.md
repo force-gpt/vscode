@@ -58,6 +58,7 @@ None.
 
 ## Release Notes
 
-### 0.4.0-beta
+### 0.4.1-beta
 
-- Code generation requests are now grounded on the project metadata. At this point, data model is sent along with the requests.
+- Handle empty value sets for picklist and other unexpected situations
+- Record type metadata context support
